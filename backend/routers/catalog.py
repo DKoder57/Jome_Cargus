@@ -3,6 +3,14 @@ from typing import Optional
 from models.product import Product
 import csv
 import os
+from pydantic import BaseModel as PydanticBaseModel
+
+class PaginatedProducts(PydanticBaseModel):
+    items: list[Product]
+    total: int
+    page: int
+    limit: int
+    pages: int
 
 router = APIRouter(prefix="/catalog", tags=["catalog"])
 
@@ -38,6 +46,48 @@ async def get_products(
     if q:
         result = [p for p in result if q.lower() in p.nome.lower()]
     return result
+
+@router.get("/products/search", response_model=PaginatedProducts)
+async def search_products(
+    categoria:    Optional[str]   = Query(None),
+    subcategoria: Optional[str]   = Query(None),
+    marca:        Optional[str]   = Query(None),
+    tamanho:      Optional[str]   = Query(None),
+    preco_min:    Optional[float] = Query(None),
+    preco_max:    Optional[float] = Query(None),
+    q:            Optional[str]   = Query(None),
+    page:         int             = Query(1, ge=1),
+    limit:        int             = Query(12, ge=1, le=100),
+):
+    result = [p for p in load_products() if p.ativo]
+
+    if categoria:
+        result = [p for p in result if p.categoria == categoria]
+    if subcategoria:
+        result = [p for p in result if p.subcategoria == subcategoria]
+    if marca:
+        result = [p for p in result if p.marca == marca]
+    if tamanho:
+        result = [p for p in result if tamanho in p.tamanhos]
+    if preco_min is not None:
+        result = [p for p in result if p.preco and p.preco >= preco_min]
+    if preco_max is not None:
+        result = [p for p in result if p.preco and p.preco <= preco_max]
+    if q:
+        result = [p for p in result if q.lower() in p.nome.lower()]
+
+    total = len(result)
+    pages = (total + limit - 1) // limit
+    start = (page - 1) * limit
+    end   = start + limit
+
+    return PaginatedProducts(
+        items=result[start:end],
+        total=total,
+        page=page,
+        limit=limit,
+        pages=pages,
+    )
 
 @router.get("/products/{product_id}", response_model=Product)
 async def get_product(product_id: str):
