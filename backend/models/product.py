@@ -8,7 +8,7 @@ class Product(BaseModel):
     subcategoria:   Optional[str] = None
     marca:          Optional[str] = None
     foto_url:       Optional[str] = None
-    preço:          Optional[float] = None
+    preco:          Optional[float] = None
     tamanhos:       list[str] = []
     cores:          list[str] = []
     cor_hex:        Optional[str] = None
