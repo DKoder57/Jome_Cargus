@@ -47,6 +47,14 @@ async def get_products(
         result = [p for p in result if q.lower() in p.nome.lower()]
     return result
 
+
+@router.get("/products/{product_id}", response_model=Product)
+async def get_product(product_id: str):
+    for p in load_products():
+        if p.id == product_id:
+            return p
+    raise HTTPException(status_code=404, detail="Produto nao encontrado")
+
 @router.get("/products/search", response_model=PaginatedProducts)
 async def search_products(
     categoria:    Optional[str]   = Query(None),
@@ -88,13 +96,6 @@ async def search_products(
         limit=limit,
         pages=pages,
     )
-
-@router.get("/products/{product_id}", response_model=Product)
-async def get_product(product_id: str):
-    for p in load_products():
-        if p.id == product_id:
-            return p
-    raise HTTPException(status_code=404, detail="Produto nao encontrado")
 
 @router.get("/categories")
 async def get_categories():
