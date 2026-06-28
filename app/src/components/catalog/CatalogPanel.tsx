@@ -34,7 +34,7 @@ export default function CatalogPanel({ open, onClose }: Props) {
     if (categoria !== 'todos') params.set('categoria', categoria)
     params.set('limit', '20')
 
-    fetch(`${API_URL}/catalog/products/search?${params}`)
+    fetch(`${API_URL}/catalog/search?${params}`)
       .then(r => r.json())
       .then(data => setProducts(data.items))
       .finally(() => setLoading(false))

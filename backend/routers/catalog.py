@@ -55,7 +55,7 @@ async def get_product(product_id: str):
             return p
     raise HTTPException(status_code=404, detail="Produto nao encontrado")
 
-@router.get("/products/search", response_model=PaginatedProducts)
+@router.get("/search", response_model=PaginatedProducts)
 async def search_products(
     categoria:    Optional[str]   = Query(None),
     subcategoria: Optional[str]   = Query(None),
