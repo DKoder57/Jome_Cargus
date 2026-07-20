@@ -101,3 +101,16 @@ async def search_products(
 async def get_categories():
     cats = list(set(p.categoria for p in load_products() if p.ativo))
     return {"categories": sorted(cats)}
+
+    
+@router.get("/stock/available", response_model=list[Product])
+async def get_available_stock(
+    categoria: Optional[str] = Query(None),
+):
+    result = [
+        p for p in load_products()
+        if p.ativo and p.foto_url
+    ]
+    if categoria:
+        result = [p for p in result if p.categoria == categoria]
+    return result
