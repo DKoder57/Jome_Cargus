@@ -4,6 +4,7 @@ from models.product import Product
 import csv
 import os
 from pydantic import BaseModel as PydanticBaseModel
+from functools import lru_cache
 
 class PaginatedProducts(PydanticBaseModel):
     items: list[Product]
@@ -14,12 +15,17 @@ class PaginatedProducts(PydanticBaseModel):
 
 router = APIRouter(prefix="/catalog", tags=["catalog"])
 
+
+@lru_cache(maxsize=1)
 def load_products() -> list[Product]:
     path = os.path.join(os.path.dirname(__file__), "..", "mock", "produtos.csv")
     products = []
     with open(path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            indisponiveis = [
+                i.strip() for i in row.get("tamanhos_indisponiveis", "").split(",") if i.strip()
+            ]
             products.append(Product(
                 id=row["id"],
                 nome=row["nome"],
@@ -29,6 +35,10 @@ def load_products() -> list[Product]:
                 foto_url=row.get("foto_url") or None,
                 preco=float(row["preco"]) if row.get("preco") else None,
                 tamanhos=[t.strip() for t in row["tamanhos"].split(",") if t.strip()],
+                tamanhos_disponiveis=[
+                    t.strip() for t in row["tamanhos"].split(",") if t.strip()
+                    if t.strip() not in indisponiveis
+                ],
                 cores=[c.strip() for c in row["cores"].split(",") if c.strip()],
                 cor_hex=row.get("cor_hex") or None,
                 ativo=row.get("ativo", "true").lower() == "true",
@@ -78,7 +88,7 @@ async def search_products(
     if tamanho:
         result = [p for p in result if tamanho in p.tamanhos]
     if preco_min is not None:
-        result = [p for p in result if p.preco and p.preco >= preco_min]
+        result = [p for p in result if p.preco is not None and p.preco >= preco_min]
     if preco_max is not None:
         result = [p for p in result if p.preco and p.preco <= preco_max]
     if q:
