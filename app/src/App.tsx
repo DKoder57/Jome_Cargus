@@ -11,6 +11,7 @@ interface Product {
   preco?: number
   cores: string[]
   tamanhos: string[]
+  tamanhos_disponiveis: string[]
   ativo: boolean
 }
 

@@ -12,6 +12,7 @@ interface Product {
   preco?: number
   cores: string[]
   tamanhos: string[]
+  tamanhos_disponiveis: string[]
   ativo: boolean
 }
 
@@ -136,14 +137,24 @@ export default function CatalogPanel({ open, onClose, onSelectProduct, selectedP
                       {/* Tamanhos */}
                       {p.tamanhos.length > 0 && (
                         <div className="flex gap-1 flex-wrap mt-2">
-                          {p.tamanhos.map(t => (
-                            <span
-                              key={t}
-                              className="text-black bg-white text-xs px-1.5 py-0.5 rounded font-medium"
-                            >
-                              {t}
-                            </span>
-                          ))}
+                          {p.tamanhos.map(t => {
+                            const disponivel = p.tamanhos_disponiveis.includes(t)
+
+                            return (
+                              <span
+                                key={t}
+                                className={`text-xs px-1.5 py-0.5 rounded font-medium relative overflow-hidden ${disponivel
+                                    ? 'bg-white text-black'
+                                    : 'bg-zinc-700 text-zinc-400 opacity-50'}`}>
+                                {t}
+                                {!disponivel && (
+                                  <span className="absolute inset-0 pointer-events-none">
+                                    <span className="absolute top-1/2 left-0 w-full h-px bg-zinc-400 -rotate-12" />
+                                  </span>
+                                )}
+                              </span>
+                            )
+                          })}
                         </div>
                       )}
                     </div>
