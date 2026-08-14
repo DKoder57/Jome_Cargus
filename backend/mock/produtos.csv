@@ -1,11 +1,11 @@
-id,nome,categoria,subcategoria,marca,foto_url,preco,tamanhos,tamanhos_indisponiveis,cores,cor_hex,ativo
-001,Camiseta Básica Urbano,camiseta,basica,Urbano,https://placehold.co/400x500/1a1a1a/c9a84c?text=Camiseta,79.90,"P,M,G,GG","GG","preto,branco","#000000,#FFFFFF",true
-002,Camiseta Polo Atlântico,camiseta,polo,Atlântico,https://placehold.co/400x500/1b3a6b/c9a84c?text=Polo,129.90,"P,M,G,GG","","azul,branco,cinza","#1B3A6B,#FFFFFF,#9E9E9E",true
-003,Camiseta Estampada Nórdico,camiseta,estampada,Nórdico,https://placehold.co/400x500/2d2d2d/c9a84c?text=Estampada,99.90,"P,M,G","P","preto,cinza","#000000,#616161",true
-004,Camiseta Social Cargus,camiseta,social,Cargus,https://placehold.co/400x500/f5f5f5/1a1a1a?text=Social,149.90,"P,M,G,GG,XG","GG,XG","branco,azul marinho","#FFFFFF,#0D1B4B",true
-005,Camiseta Básica Convicto,camiseta,basica,Convicto,https://placehold.co/400x500/4a4a4a/c9a84c?text=Basica,69.90,"P,M,G,GG","","cinza,vinho","#616161,#6D1A2A",true
-006,Jaqueta Jeans Urbano,jaqueta,jeans,Urbano,https://placehold.co/400x500/1b3a6b/c9a84c?text=Jaqueta+Jeans,249.90,"P,M,G,GG","M","azul,azul escuro","#4A6FA5,#1B3A6B",true
-007,Jaqueta Bomber Atlântico,jaqueta,bomber,Atlântico,https://placehold.co/400x500/1a1a1a/c9a84c?text=Bomber,319.90,"P,M,G,GG","","preto,verde militar","#000000,#3B4A2F",true
-008,Jaqueta Corta-vento Nórdico,jaqueta,corta-vento,Nórdico,https://placehold.co/400x500/0d1b4b/c9a84c?text=Corta-vento,289.90,"M,G,GG","GG","azul marinho,cinza","#0D1B4B,#9E9E9E",true
-009,Jaqueta Sarja Cargus,jaqueta,sarja,Cargus,https://placehold.co/400x500/3b4a2f/c9a84c?text=Sarja,269.90,"P,M,G","M","verde militar,bege","#3B4A2F,#D4C5A9",true
-010,Jaqueta Bomber Convicto,jaqueta,bomber,Convicto,https://placehold.co/400x500/6d1a2a/c9a84c?text=Bomber,299.90,"P,M,G,GG","P,GG","vinho,preto","#6D1A2A,#000000",true
+id,nome,categoria,subcategoria,marca,foto_url,preco,tamanhos,tamanhos_indisponiveis,cores,cor_hex,material,estilo,ocasiao,ativo
+001,Camiseta Básica Urbano,camiseta,basica,Urbano,https://placehold.co/400x500/1a1a1a/c9a84c?text=Camiseta,79.90,"P,M,G,GG","GG","preto,branco","#000000,#FFFFFF",algodão,casual,"casual,viagem",true
+002,Camiseta Polo Atlântico,camiseta,polo,Atlântico,https://placehold.co/400x500/1b3a6b/c9a84c?text=Polo,129.90,"P,M,G,GG","","azul,branco,cinza","#1B3A6B,#FFFFFF,#9E9E9E",algodão peruano,smart casual,"trabalho,casual",true
+003,Camiseta Estampada Nórdico,camiseta,estampada,Nórdico,https://placehold.co/400x500/2d2d2d/c9a84c?text=Estampada,99.90,"P,M,G","P","preto,cinza","#000000,#616161",algodão,streetwear,"casual,viagem",true
+004,Camiseta Social Cargus,camiseta,social,Cargus,https://placehold.co/400x500/f5f5f5/1a1a1a?text=Social,149.90,"P,M,G,GG,XG","GG,XG","branco,azul marinho","#FFFFFF,#0D1B4B",algodão peruano,social,"trabalho,festa",true
+005,Camiseta Básica Convicto,camiseta,basica,Convicto,https://placehold.co/400x500/4a4a4a/c9a84c?text=Basica,69.90,"P,M,G,GG","","cinza,vinho","#616161,#6D1A2A",algodão,casual,"casual,viagem",true
+006,Jaqueta Jeans Urbano,jaqueta,jeans,Urbano,https://placehold.co/400x500/1b3a6b/c9a84c?text=Jaqueta+Jeans,249.90,"P,M,G,GG","M","azul,azul escuro","#4A6FA5,#1B3A6B",jeans,casual,"casual,viagem",true
+007,Jaqueta Bomber Atlântico,jaqueta,bomber,Atlântico,https://placehold.co/400x500/1a1a1a/c9a84c?text=Bomber,319.90,"P,M,G,GG","","preto,verde militar","#000000,#3B4A2F",nylon,streetwear,"casual,viagem",true
+008,Jaqueta Corta-vento Nórdico,jaqueta,corta-vento,Nórdico,https://placehold.co/400x500/0d1b4b/c9a84c?text=Corta-vento,289.90,"M,G,GG","GG","azul marinho,cinza","#0D1B4B,#9E9E9E",poliéster,esportivo,"esporte,viagem",true
+009,Jaqueta Sarja Cargus,jaqueta,sarja,Cargus,https://placehold.co/400x500/3b4a2f/c9a84c?text=Sarja,269.90,"P,M,G","M","verde militar,bege","#3B4A2F,#D4C5A9",sarja,smart casual,"trabalho,casual",true
+010,Jaqueta Bomber Convicto,jaqueta,bomber,Convicto,https://placehold.co/400x500/6d1a2a/c9a84c?text=Bomber,299.90,"P,M,G,GG","P,GG","vinho,preto","#6D1A2A,#000000",nylon,streetwear,"festa,casual",true
