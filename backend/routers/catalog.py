@@ -42,6 +42,9 @@ def load_products() -> list[Product]:
                 cores=[c.strip() for c in row["cores"].split(",") if c.strip()],
                 cor_hex=row.get("cor_hex") or None,
                 ativo=row.get("ativo", "true").lower() == "true",
+                ocasiao=[o.strip() for o in row.get("ocasiao", "").split(",") if o.strip()],
+                material=row.get("material") or None,
+                estilo=row.get("estilo") or None,
             ))
     return products
 
@@ -50,7 +53,7 @@ async def get_products(
     categoria: Optional[str] = Query(None),
     q:         Optional[str] = Query(None),
 ):
-    result = [p for p in load_products() if p.ativo]
+    result = [p for p in () if p.ativo]
     if categoria:
         result = [p for p in result if p.categoria == categoria]
     if q:
